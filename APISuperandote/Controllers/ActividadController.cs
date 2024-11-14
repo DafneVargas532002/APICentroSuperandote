@@ -33,7 +33,7 @@ namespace APISuperandote.Controllers
                 });
                 if (datos.Count() == 0)
                 {
-                    oResponse.message = "No se encontraron datos";
+                    oResponse.message = "No se encontraron actividades";
                     return NotFound(oResponse);
                 }
                 oResponse.success = 1;
