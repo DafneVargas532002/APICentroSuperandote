@@ -124,6 +124,14 @@ namespace APISuperandote.Controllers
                 {
                     Id = i.Id,
                     CI = i.Ci,
+                    nombres = _context.Estudiantes.Where(e => e.Ci == i.Ci).Select(e => e.Nombres)
+                    .FirstOrDefault() ??
+                    _context.Educadores.Where(ed => ed.Ci == i.Ci).Select(ed => ed.Nombres)
+                    .FirstOrDefault(),
+                    apellidos = _context.Estudiantes.Where(e => e.Ci == i.Ci).Select(e => e.Apellidos)
+                    .FirstOrDefault() ??
+                    _context.Educadores.Where(ed => ed.Ci == i.Ci).Select(ed => ed.Apellidos)
+                    .FirstOrDefault(),
                     Rol = i.IdRolNavigation.NombreRol,
                     i.Estado
                 });
