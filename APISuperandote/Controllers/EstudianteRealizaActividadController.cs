@@ -211,6 +211,42 @@ namespace APISuperandote.Controllers
             }
             return Ok(oResponse);
         }
+        [HttpPost("addEstudianteRealizaActividadVR")]
+        public IActionResult addEstudianteRealizaActividadVR(EstudianteRealizaActividad_add_request oModel)
+        {
+            Response oResponse = new Response();
+            try
+            {
+                var verf = _context.EstudianteRealizaActividads;
+
+                EstudianteRealizaActividad estudianteRealizaActividad = new EstudianteRealizaActividad();
+                estudianteRealizaActividad.IdActividad = oModel.IdActividad;
+                estudianteRealizaActividad.Ciestudiante = _context.Estudiantes
+     .Where(e => e.Ci == oModel.Ciestudiante)
+     .Select(e => e.Id)
+     .FirstOrDefault(); 
+                estudianteRealizaActividad.Nivel = oModel.Nivel;
+                estudianteRealizaActividad.Puntos = oModel.Puntos;
+                estudianteRealizaActividad.Tiempo = oModel.Tiempo;
+                estudianteRealizaActividad.FechaActividad = DateTime.Now;
+                estudianteRealizaActividad.Estado = true;
+
+                _context.EstudianteRealizaActividads.Add(estudianteRealizaActividad);
+                _context.SaveChanges();
+                oResponse.success = 1;
+                oResponse.data = estudianteRealizaActividad;
+
+
+
+                oResponse.message = "Registrado con exito";
+            }
+            catch (Exception ex)
+            {
+                oResponse.message = ex.Message;
+                return BadRequest(oResponse);
+            }
+            return Ok(oResponse);
+        }
         [HttpPut("updateEstudianteRealizaActividad/{id}")]
         public IActionResult updateEstudianteRealizaActividad(EstudianteRealizaActividad_edit_request oModel, int id)
         {
