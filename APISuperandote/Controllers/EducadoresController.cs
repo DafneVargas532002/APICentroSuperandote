@@ -29,7 +29,7 @@ namespace APISuperandote.Controllers
                     c.Ci,
                     c.Nombres,
                     c.Apellidos,
-                    c.Estado
+                    Estado = c.Estado ? "Activo" : "Inactivo"
                 });
                 if (datos.Count() == 0)
                 {

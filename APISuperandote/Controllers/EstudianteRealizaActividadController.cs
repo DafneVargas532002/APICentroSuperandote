@@ -29,7 +29,7 @@ namespace APISuperandote.Controllers
                     c.IdActividadNavigation.Nombre,
                     c.Puntos,
                     c.Nivel,
-                    c.Estado,
+                    Estado = c.Estado ? "Activo" : "Inactivo",
                     c.Ciestudiante,
                     c.Tiempo,
                     c.FechaActividad
@@ -158,9 +158,7 @@ namespace APISuperandote.Controllers
                     c.Nivel,
                     c.Tiempo,
                     FechaActividad = c.FechaActividad.HasValue ? c.FechaActividad.Value.ToString("yyyy-MM-dd") : null,
-                    c.Estado
-                   
-                    
+                    Estado = c.Estado ? "Activo" : "Inactivo",
                 });
                 if (datos.Count() == 0)
                 {

@@ -21,7 +21,6 @@ namespace APISuperandote.Controllers
         [HttpGet("getAllUsers")]
         public IActionResult getAllUsers()
         {
-            int ci = 0;
             Response oResponse = new Response();
             try
             {
@@ -38,7 +37,7 @@ namespace APISuperandote.Controllers
                     _context.Educadores.Where(ed => ed.Ci == i.Ci).Select(ed => ed.Apellidos)
                     .FirstOrDefault(),
                     Rol = i.IdRolNavigation.NombreRol,
-                    i.Estado
+                    Estado = i.Estado ? "Activo" : "Inactivo"
                 });
 
 

@@ -33,8 +33,8 @@ namespace APISuperandote.Controllers
                     c.IdActividad,
                     c.FechaReporte,
                     c.Observaciones,
-                    c.Estado
-                             }).ToList();
+                    Estado = c.Estado ? "Activo" : "Inactivo"
+                }).ToList();
                 if (datos.Count() == 0)
                 {
                     oResponse.message = "No se encontraron datos";
@@ -162,7 +162,7 @@ namespace APISuperandote.Controllers
                                 nombreactividad = actividad.Nombre,
                                 FechaReporte = rp.FechaReporte.ToString("yyyy-MM-dd"),
                                 rp.Observaciones,
-                                rp.Estado
+                                Estado = rp.Estado ? "Activo" : "Inactivo",
                             };
 
 

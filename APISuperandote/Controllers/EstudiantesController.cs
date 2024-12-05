@@ -31,7 +31,7 @@ namespace APISuperandote.Controllers
                     c.Apellidos,
                     FechaNacimiento = c.FechaNacimiento.ToString("yyyy-MM-dd"),
                     c.GradoAutismo,
-                    c.Estado
+                    Estado = c.Estado ? "Activo" : "Inactivo"
                 });
                 if (datos.Count() == 0)
                 {
